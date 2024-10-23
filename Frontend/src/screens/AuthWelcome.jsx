@@ -26,26 +26,26 @@ const AuthWelcome = () => {
                 </div>
 
                 {/* Google login button */}
-                <button className="flex items-center justify-center w-full py-3 px-4 mt-4 bg-white border border-gray-300 rounded-lg shadow-sm text-gray-700 hover:bg-gray-100 transition-colors">
+                <a className='w-full' href="http://localhost:5000/auth/google" ><button className="flex items-center justify-center w-full py-3 px-4 mt-4 bg-white border border-gray-300 rounded-lg shadow-sm text-gray-700 hover:bg-gray-100 transition-colors">
                     <img src={Google} alt="Google" className="w-5 h-5 mr-2" />
                     Continue with Google
-                </button>
+                </button></a>
 
                 {/* Create an account button */}
-                <Link to='/home' className='w-full'>
+                {/* <Link to='/home' className='w-full'>
                     <button className="w-full py-3 px-4 mt-4 bg-green-500 text-white font-semibold rounded-lg shadow-lg hover:bg-green-600 transition-colors">
                         Create an account
                     </button>
-                </Link>
+                </Link> */}
 
                 {/* Login link */}
                 <div className="mt-6">
-                    <p className="text-gray-500">
+                    {/* <p className="text-gray-500">
                         Already have an account?{' '}
                         <a href="/login" className="text-green-500 font-semibold hover:underline">
                             Login
                         </a>
-                    </p>
+                    </p> */}
                 </div>
             </div>
         </div>

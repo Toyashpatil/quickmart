@@ -5,6 +5,8 @@ import AuthWelcome from "../screens/AuthWelcome";
 import ProductDetails from "../screens/ProductDetails";
 import Cart from "../screens/Cart";
 import Login from "../screens/Login";
+import Signup from "../screens/Signup";
+import Callback from "../screens/Callback";
 
 
 
@@ -36,6 +38,14 @@ const routes =[
     {
         path : "/login",
         element:<Login/>,
+    },
+    {
+        path : "/signUp",
+        element:<Signup/>,
+    },
+    {
+        path : "/callback",
+        element:<Callback/>,
     },
 
 ];
