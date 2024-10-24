@@ -7,6 +7,7 @@ import Cart from "../screens/Cart";
 import Login from "../screens/Login";
 import Signup from "../screens/Signup";
 import Callback from "../screens/Callback";
+import Test from "../screens/Test";
 
 
 
@@ -46,6 +47,10 @@ const routes =[
     {
         path : "/callback",
         element:<Callback/>,
+    },
+    {
+        path : "/test",
+        element:<Test/>,
     },
 
 ];

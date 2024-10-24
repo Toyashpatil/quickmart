@@ -23,10 +23,14 @@ import Grapes from '../assets/home/Grapes.svg'
 
 const Home = () => {
   return (
-    <div className="w-[100vw]overflow-scroll bg-gray-50">
-    
+    <div className="w-[100vw] h-[100vh] overflow-scroll bg-white">
+
       {/* Search Bar */}
+      <div className='p-4'>
+        <h1 className='text-xl font-semibold'>Namaste , Toyash</h1>
+      </div>
       <div className="flex items-center justify-between bg-white p-4">
+
         <div className="relative flex-1">
           <input
             type="text"
@@ -55,7 +59,7 @@ const Home = () => {
           <Categories Name="Fruits" path={Fruits} />
           <Categories Name="Beverages" path={Beve} />
           <Categories Name="Grocery" path={Groc} />
-          <Categories Name="Edible Oil" path={Oil} />         
+          <Categories Name="Edible Oil" path={Oil} />
           {/* Add more categories similarly */}
         </div>
       </div>
@@ -73,18 +77,18 @@ const Home = () => {
             <Product path={Peach} price='100' Quantity='Dozen' Name='Peach' />
           </div>
           <div>
-          <Product path={Ava} price='200' Quantity='Dozen' Name='Avacado' />
+            <Product path={Ava} price='200' Quantity='Dozen' Name='Avacado' />
 
           </div>
           <div>
-          <Product path={Pine} price='150' Quantity='Dozen' Name='Pineapple' />
+            <Product path={Pine} price='150' Quantity='Dozen' Name='Pineapple' />
 
           </div>
           <div>
-          <Product path={Grapes} price='70' Quantity='Dozen' Name='Grapes' />
+            <Product path={Grapes} price='70' Quantity='Dozen' Name='Grapes' />
 
           </div>
-          
+
           {/* Add more product cards in a similar format */}
         </div>
       </div>
