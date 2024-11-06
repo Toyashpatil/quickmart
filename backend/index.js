@@ -20,6 +20,15 @@ const PORT =5000;
 connectTOMongo();
 
 app.use('/auth',require('./routes/auth'));
+app.use('/product',require('./routes/product'));
+app.use('/cart',require('./routes/Cart'));
+app.use('/payment',require('./routes/razorpay'));
+app.use('/order',require('./routes/order'));
+
+
+
+
+
 
 app.get('/', (req, res) => {
     res.send('<a href="auth/google" >Authenticate with Google</a>')

@@ -4,13 +4,15 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const Product = ({ path, price, Name, Quantity,bigImage }) => {
+const Product = ({ path, price, Name, Quantity,bigImage,onAddtocart,id,pic }) => {
 
     const navigate = useNavigate();
     const data = {
         name: Name,
         price: price,
         Quantity: Quantity,
+        id,
+        path,
 
     };
 
@@ -32,7 +34,7 @@ const Product = ({ path, price, Name, Quantity,bigImage }) => {
                 <p className="text-gray-400 text-xs">{Quantity}</p>
             </div>
             <div>
-                <button className="bg-green-500 text-white text-sm mt-2 py-1 px-4 rounded-full w-full">Add to cart</button>
+                <button onClick={()=>{onAddtocart(id)}} className="bg-green-500 text-white text-sm mt-2 py-1 px-4 rounded-full w-full">Add to cart</button>
             </div>
         </div>
     )

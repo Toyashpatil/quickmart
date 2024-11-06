@@ -4,6 +4,7 @@ const passport = require('passport')
 const jwt = require('jsonwebtoken')
 const { google } = require('googleapis');
 const User = require('../models/User')
+const fetchUser= require('../middleware/fetchuser')
 
 const JWT_SECRET = 'toyash123'
 
@@ -60,6 +61,17 @@ router.get('/google/callback',
             return res.status(500).json({ success: false, error: "Internal server error" });
         }
     });
+
+router.post('/getuser', fetchUser, async (req, res) => {
+
+    try {
+        const userId = req.user.id;
+        const user = await User.findById(userId);
+        res.json(user);
+    } catch (error) {
+        console.error(error);
+    }
+})
 
 // res.setHeader({ token })
 // res.redirect(`http://localhost:3000/callback/?authToken=${token}&googleToken=${googleToken}`)

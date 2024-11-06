@@ -16,7 +16,7 @@ const Navbar = () => {
             <div className="text-center">
                 <img src={Home} alt="Home" />
             </div>
-            <div className="text-center">
+            <div onClick={()=>{navigate('/orders')}} className="text-center">
                 <img src={Profile} alt="Profile" />
             </div>
             <div className="text-center">

@@ -6,36 +6,65 @@ const ProductDetails = () => {
   const navigate = useNavigate();
   const receivedData = location.state;
 
-  // State to track if the product is added to cart
   const [isAddedToCart, setIsAddedToCart] = useState(false);
+  const [quantity, setQuantity] = useState(1);
 
-  // Quantity state
-  const [quantity, setQuantity] = useState(3);
-
-  // Function to handle increment and decrement of quantity
+  // Increment and Decrement functions for quantity
   const handleIncrement = () => setQuantity(quantity + 1);
   const handleDecrement = () => {
     if (quantity > 1) setQuantity(quantity - 1);
   };
+  console.log(receivedData.id)
 
   // Handle Add to Cart / Go to Cart button click
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     if (isAddedToCart) {
-      // If already added to cart, navigate to cart page
-      navigate('/cart');
+      navigate('/cart'); // Navigate to cart page if already added
     } else {
-      // Add product to cart logic can be implemented here
-      setIsAddedToCart(true);
-      // Delay changing to "Go to cart"
+      try {
+        const userId = localStorage.getItem('userId'); // Assuming userId is stored in local storage
+
+        // Check if userId exists
+        if (!userId) {
+          alert("Please log in to add products to your cart.");
+          return;
+        }
+        
+        // Make the API request to add the product to the cart
+        const response = await fetch('http://localhost:5000/cart/add', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userId,
+            productId: receivedData?.id, // Use the product's ID from received data
+            quantity,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to add product to cart');
+        }
+
+        const result = await response.json();
+        console.log(result);
+
+        // Update state to reflect that the product has been added to the cart
+        setIsAddedToCart(true);
+      } catch (error) {
+        console.error("Error:", error);
+        alert("There was an error adding the product to your cart.");
+      }
     }
   };
 
   return (
-    <div className="space-y-[5px]  h-[100vh] bg-gradient-to-b from-green-50 to-transparent">
+    <div className="space-y-[5px] h-[100vh] bg-gradient-to-b from-green-50 to-transparent">
       {/* Product Image */}
       <div className="bg-gradient-to-b from-green-50 to-transparent bg-red-500 rounded-lg flex justify-center items-center">
         <img
-          src={receivedData?.image || 'https://www.mystore.in/s/62ea2c599d1398fa16dbae0a/651fa0c2f6e21414eda7ac9e/peach-640x640.jpg'}
+          src={receivedData?.path || 'https://www.mystore.in/s/62ea2c599d1398fa16dbae0a/651fa0c2f6e21414eda7ac9e/peach-640x640.jpg'}
           alt="Product"
           className="w-full h-full rounded-lg shadow-lg"
         />
@@ -43,13 +72,8 @@ const ProductDetails = () => {
 
       {/* Product Info */}
       <div className="bg-white p-4 rounded-lg shadow-md mt-6">
-        {/* Price */}
         <p className="text-green-500 text-xl font-bold">₹{receivedData?.price || '2.22'}</p>
-
-        {/* Product Title */}
         <h2 className="text-2xl font-semibold mt-2">{receivedData?.name}</h2>
-
-        {/* Weight */}
         <p className="text-gray-500">{receivedData?.Quantity}</p>
 
         {/* Rating */}
@@ -62,8 +86,8 @@ const ProductDetails = () => {
 
         {/* Description */}
         <p className="text-gray-600 text-sm mt-3">
-          Organic lemons are just like regular lemons, but they have a few more scars on the outside. Perfect for juicing.
-          <span className="text-green-500 font-medium"> more</span>
+          Your Favourite Grocery from your nearest favourite General Store.
+          {/* <span className="text-green-500 font-medium"> more</span> */}
         </p>
 
         {/* Quantity Selector */}

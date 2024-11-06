@@ -8,6 +8,8 @@ import Login from "../screens/Login";
 import Signup from "../screens/Signup";
 import Callback from "../screens/Callback";
 import Test from "../screens/Test";
+import Success from "../screens/Success";
+import Order from "../screens/Orders";
 
 
 
@@ -52,6 +54,15 @@ const routes =[
         path : "/test",
         element:<Test/>,
     },
+    {
+        path : "/success",
+        element:<Success/>,
+    },
+    {
+        path : "/orders",
+        element:<Order/>,
+    },
+    
 
 ];
 export default routes;
